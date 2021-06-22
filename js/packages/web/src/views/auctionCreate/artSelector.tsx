@@ -76,7 +76,7 @@ export const ArtSelector = (props: ArtSelectorProps) => {
         })}
         {(allowMultiple || selectedItems.size === 0) && (
           <div
-            className="ant-card ant-card-bordered ant-card-hoverable art-card"
+            className="ant-card ant-card-hoverable art-card"
             style={{ width: 200, height: 300, display: 'flex' }}
             onClick={open}
           >
@@ -98,7 +98,10 @@ export const ArtSelector = (props: ArtSelectorProps) => {
             Select the NFT that you want to sell copy/copies of.
           </p>
         </Row>
-        <Row className="content-action" style={{ overflowY: 'auto', height: "50vh" }}>
+        <Row
+          className="content-action"
+          style={{ overflowY: 'auto', height: '50vh' }}
+        >
           <Masonry
             breakpointCols={breakpointColumnsObj}
             className="my-masonry-grid"

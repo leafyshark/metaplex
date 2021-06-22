@@ -3,13 +3,15 @@ import React from 'react';
 import Masonry from 'react-masonry-css';
 import { Link, useParams } from 'react-router-dom';
 import { ArtCard } from '../../components/ArtCard';
-import { CardLoader } from '../../components/MyLoader';
+import { ThreeDots } from '../../components/MyLoader';
 import { useCreator, useCreatorArts } from '../../hooks';
+import { MetaAvatar } from '../../components/MetaAvatar';
 
 export const ArtistView = () => {
   const { id } = useParams<{ id: string }>();
   const creator = useCreator(id);
   const artwork = useCreatorArts(id);
+
   const breakpointColumnsObj = {
     default: 4,
     1100: 3,
@@ -23,16 +25,14 @@ export const ArtistView = () => {
       className="my-masonry-grid"
       columnClassName="my-masonry-grid_column"
     >
-      {artwork.length > 0
-        ? artwork.map((m, idx) => {
-            const id = m.pubkey.toBase58();
-            return (
-              <Link to={`/art/${id}`} key={idx}>
-                <ArtCard key={id} pubkey={m.pubkey} preview={false} />
-              </Link>
-            );
-          })
-        : [...Array(6)].map((_, idx) => <CardLoader key={idx} />)}
+      {artwork.map((m, idx) => {
+        const id = m.pubkey.toBase58();
+        return (
+          <Link to={`/art/${id}`} key={idx}>
+            <ArtCard key={id} pubkey={m.pubkey} preview={false} />
+          </Link>
+        );
+      })}
     </Masonry>
   );
 
@@ -53,7 +53,7 @@ export const ArtistView = () => {
             <div className="info-content">{creator?.info.description}</div>
             <br />
             <div className="info-header">Art Created</div>
-            {artworkGrid}
+            {artwork.length > 0 ? artworkGrid : <ThreeDots />}
           </Col>
         </Row>
       </Col>
