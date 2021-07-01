@@ -255,7 +255,7 @@ export function Notifications() {
       trigger="click"
     >
       <h1 className="title">
-        <img src="/solverse-logo.png" width="100px" />
+        <img src="/solverse-logo.png" id="solverse-logo" />
       </h1>
     </Popover>
   );
